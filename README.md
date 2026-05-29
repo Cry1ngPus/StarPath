@@ -104,6 +104,6 @@ All planetary data sourced from real physical constants (mass, radius, surface g
 
 ## Competition
 
-2026 National Ilan University Programming, Information and AI Application Contest
-Category: Creative Implementation Professional Group
-Advisor: Chao-Hsi Huang
+- Contest: 2026 National Ilan University Programming, Information and AI Application Contest
+- Category: Creative Implementation Professional Group
+- Advisor: Chao-Hsi Huang
