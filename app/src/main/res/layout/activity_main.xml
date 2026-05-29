@@ -219,6 +219,38 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/rowPresetLock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#1A2A1A"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_marginBottom="6dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/tvPresetLockMsg"
+                android:text="目前載入：月球情境，調整參數前請先重置"
+                android:textSize="11sp"
+                android:textColor="#88CCAA"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已鎖定"
+                android:textSize="11sp"
+                android:textColor="#88CCAA"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -404,7 +436,6 @@
             android:layout_marginRight="14dp"
             android:layout_marginBottom="8dp"/>
 
-        <!-- 四項即時數據 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

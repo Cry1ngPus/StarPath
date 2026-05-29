@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvIndicatorCircular, tvIndicatorEscape;
     private Button btnStart, btnReset, btnOrbitalData, btnPreset;
     private Switch switchProMode, switchTrail;
+    private LinearLayout rowPresetLock;
+    private TextView tvPresetLockMsg;
+    private boolean presetLocked = false;
     private EditText etSpeedMultiplier, etDistance, etVelocity;
     private TextView tvDistanceRange, tvVelocityRange;
     private LinearLayout rowDistanceSeek, rowDistanceInput, rowVelocitySeek, rowVelocityInput;
@@ -89,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         etSpeedMultiplier   = findViewById(R.id.etSpeedMultiplier);
         etDistance          = findViewById(R.id.etDistance);
         etVelocity          = findViewById(R.id.etVelocity);
+        rowPresetLock       = findViewById(R.id.rowPresetLock);
+        tvPresetLockMsg     = findViewById(R.id.tvPresetLockMsg);
         tvDistanceRange     = findViewById(R.id.tvDistanceRange);
         tvVelocityRange     = findViewById(R.id.tvVelocityRange);
         rowDistanceSeek     = findViewById(R.id.rowDistanceSeek);
@@ -279,6 +284,7 @@ public class MainActivity extends AppCompatActivity {
             btnStart.setText("開始");
             simulationView.invalidate();
             updateInfoPanel();
+            setParamLocked(false, null);
         });
 
         // 數據頁面
@@ -296,7 +302,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 情境選單
         btnPreset.setOnClickListener(v -> {
             String[] items = {
                     "🌕  月球（27.3 天週期）",
@@ -475,13 +480,14 @@ public class MainActivity extends AppCompatActivity {
         state.running = false;
         btnStart.setText("開始");
 
+        // 情境資料：{行星索引, 距地心距離(km), 初速(m/s), 角度(°)}
         double[][] presets = {
-                {2, 384400,  1022, 0},
-                {2,   6779,  7668, 0},
-                {2,  35786,  3075, 0},
-                {2,   6918,  7590, 0},
-                {2,  50000,  2000, 45},
-                {2, 100000,  3900, 0},
+                {2, 384400,  1022, 0},   // 月球
+                {2,   6779,  7668, 0},   // 國際空間站（地球半徑 6371 + 408 km）
+                {2,  35786,  3075, 0},   // 地球同步衛星
+                {2,   6918,  7590, 0},   // 哈伯太空望遠鏡（6371 + 547 km）
+                {2,  50000,  2000, 45},  // 橢圓軌道示範
+                {2, 100000,  3900, 0},   // 接近逃逸速度
         };
 
         if (index < 0 || index >= presets.length) return;
@@ -529,6 +535,33 @@ public class MainActivity extends AppCompatActivity {
         state.reset();
         simulationView.setState(state);
         updateInfoPanel();
+
+        String[] presetNames = {
+                "月球", "國際空間站 (ISS)", "地球同步衛星", "哈伯太空望遠鏡", "橢圓軌道示範", "逃逸速度示範"
+        };
+        setParamLocked(true, presetNames[index]);
+    }
+
+    private void setParamLocked(boolean locked, String presetName) {
+        presetLocked = locked;
+
+        seekDistance.setEnabled(!locked);
+        seekVelocity.setEnabled(!locked);
+        seekAngle.setEnabled(!locked);
+
+        etDistance.setEnabled(!locked);
+        etVelocity.setEnabled(!locked);
+
+        spinnerPlanet.setEnabled(!locked);
+
+        switchProMode.setEnabled(!locked);
+
+        if (locked && presetName != null) {
+            tvPresetLockMsg.setText("情境：" + presetName + "　　調整參數前請先重置");
+            rowPresetLock.setVisibility(View.VISIBLE);
+        } else {
+            rowPresetLock.setVisibility(View.GONE);
+        }
     }
 
     @Override
