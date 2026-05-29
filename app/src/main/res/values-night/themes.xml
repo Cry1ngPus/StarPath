@@ -1,0 +1,57 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.PlanetSimulate" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">#0D0D1A</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="colorPrimary">#5C4FDF</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSurface">#1A1A2E</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColorSecondary">#9090B0</item>
+    </style>
+    <style name="Theme.PlanetSimulate" parent="Base.Theme.PlanetSimulate" />
+    <style name="Theme.PlanetSimulate.Splash" parent="Base.Theme.PlanetSimulate">
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="SectionHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingTop">4dp</item>
+    </style>
+    <style name="DataRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+    </style>
+    <style name="Label">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">#AAAAAA</item>
+    </style>
+    <style name="Value">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1.4</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">end</item>
+        <item name="android:text">--</item>
+    </style>
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#33FFFFFF</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+</resources>

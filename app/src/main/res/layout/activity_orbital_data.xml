@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        android:background="?attr/colorPrimary">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← 返回"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="軌道數據"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@android:color/white"/>
+
+        <View android:layout_width="80dp" android:layout_height="1dp"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 行星資訊 -->
+            <TextView style="@style/SectionHeader" android:text="行星資訊"/>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="行星"/>
+                <TextView android:id="@+id/tvPlanetName" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="質量"/>
+                <TextView android:id="@+id/tvPlanetMass" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="半徑"/>
+                <TextView android:id="@+id/tvPlanetRadius" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="表面重力 g"/>
+                <TextView android:id="@+id/tvSurfaceG" style="@style/Value"/>
+            </LinearLayout>
+
+            <View style="@style/Divider"/>
+
+            <TextView style="@style/SectionHeader" android:text="軌道參數（解析解）"/>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="離心率 e"/>
+                <TextView android:id="@+id/tvEccentricity" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="半長軸 a"/>
+                <TextView android:id="@+id/tvSemiMajorAxis" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="軌道週期 T"/>
+                <TextView android:id="@+id/tvPeriod" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="近地點"/>
+                <TextView android:id="@+id/tvPeriapsis" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="遠地點"/>
+                <TextView android:id="@+id/tvApoapsis" style="@style/Value"/>
+            </LinearLayout>
+
+            <View style="@style/Divider"/>
+
+            <TextView style="@style/SectionHeader" android:text="速度參考（初始位置）"/>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="設定初速"/>
+                <TextView android:id="@+id/tvInitVelocity" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="圓形軌道速度"/>
+                <TextView android:id="@+id/tvCircularV" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="逃逸速度"/>
+                <TextView android:id="@+id/tvEscapeV" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="v / v圓軌"/>
+                <TextView android:id="@+id/tvVRatio" style="@style/Value"/>
+            </LinearLayout>
+
+            <View style="@style/Divider"/>
+
+            <TextView style="@style/SectionHeader" android:text="即時狀態"/>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="目前距離"/>
+                <TextView android:id="@+id/tvCurrentDist" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="目前速度"/>
+                <TextView android:id="@+id/tvCurrentSpeed" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="引力加速度（當前位置）"/>
+                <TextView android:id="@+id/tvCurrentAccel" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="模擬時間"/>
+                <TextView android:id="@+id/tvSimTime" style="@style/Value"/>
+            </LinearLayout>
+
+            <View style="@style/Divider"/>
+
+            <TextView style="@style/SectionHeader" android:text="能量分析"/>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="動能"/>
+                <TextView android:id="@+id/tvKineticE" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="位能"/>
+                <TextView android:id="@+id/tvPotentialE" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="總機械能"/>
+                <TextView android:id="@+id/tvTotalE" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="當前位置圓軌速度"/>
+                <TextView android:id="@+id/tvCircularVNow" style="@style/Value"/>
+            </LinearLayout>
+            <LinearLayout style="@style/DataRow">
+                <TextView style="@style/Label" android:text="當前位置逃逸速度"/>
+                <TextView android:id="@+id/tvEscapeVNow" style="@style/Value"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnRestartTutorial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="重新開始教學"
+        android:textSize="13sp"
+        android:textColor="#9090B0"
+        android:backgroundTint="#2A2A3E"
+        android:layout_margin="12dp"/>
+
+</LinearLayout>

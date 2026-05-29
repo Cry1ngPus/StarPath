@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0D0D1A"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:id="@+id/controlPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="8dp"
+        android:background="#1A1A2E">
+
+        <LinearLayout
+            android:id="@+id/rowPlanet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="6dp">
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="行星"
+                android:textSize="13sp"
+                android:textColor="#9090B0"/>
+
+            <Spinner
+                android:id="@+id/spinnerPlanet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#9090B0"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowDistanceSeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="2dp">
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="距離"
+                android:textSize="13sp"
+                android:textColor="#9090B0"/>
+
+            <SeekBar
+                android:id="@+id/seekDistance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="100"
+                android:progressTint="#7C6FFF"
+                android:thumbTint="#7C6FFF"/>
+
+            <TextView
+                android:id="@+id/tvDistance"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="-- km"
+                android:textSize="12sp"
+                android:textColor="#CCCCEE"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowDistanceInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="2dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="距離"
+                android:textSize="13sp"
+                android:textColor="#9090B0"/>
+
+            <EditText
+                android:id="@+id/etDistance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionDone"
+                android:hint="km"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#555577"/>
+
+            <TextView
+                android:id="@+id/tvDistanceRange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="10sp"
+                android:textColor="#666688"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowVelocitySeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="2dp">
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="初速"
+                android:textSize="13sp"
+                android:textColor="#9090B0"/>
+
+            <SeekBar
+                android:id="@+id/seekVelocity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="100"
+                android:progressTint="#7C6FFF"
+                android:thumbTint="#7C6FFF"/>
+
+            <TextView
+                android:id="@+id/tvVelocity"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="0 m/s"
+                android:textSize="12sp"
+                android:textColor="#CCCCEE"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowVelocityInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="2dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="初速"
+                android:textSize="13sp"
+                android:textColor="#9090B0"/>
+
+            <EditText
+                android:id="@+id/etVelocity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionDone"
+                android:hint="m/s"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#555577"/>
+
+            <TextView
+                android:id="@+id/tvVelocityRange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="10sp"
+                android:textColor="#666688"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowAngle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="角度"
+                android:textSize="13sp"
+                android:textColor="#9090B0"/>
+
+            <SeekBar
+                android:id="@+id/seekAngle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="180"
+                android:progressTint="#7C6FFF"
+                android:thumbTint="#7C6FFF"/>
+
+            <TextView
+                android:id="@+id/tvAngle"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="0°"
+                android:textSize="12sp"
+                android:textColor="#CCCCEE"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="2"
+                android:text="開始"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#5C4FDF"
+                android:layout_marginEnd="6dp"/>
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:text="重置"
+                android:textSize="13sp"
+                android:textColor="#CCCCEE"
+                android:backgroundTint="#2A2A3E"
+                android:layout_marginEnd="6dp"/>
+
+            <Button
+                android:id="@+id/btnPreset"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:text="情境"
+                android:textSize="13sp"
+                android:textColor="#CCCCEE"
+                android:backgroundTint="#2A2A3E"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="軌跡"
+                android:textSize="12sp"
+                android:textColor="#9090B0"
+                android:layout_marginEnd="4dp"/>
+
+            <Switch
+                android:id="@+id/btnToggleTrail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_marginEnd="16dp"
+                android:thumbTint="#7C6FFF"
+                android:trackTint="#3A3A5E"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="速率"
+                android:textSize="12sp"
+                android:textColor="#9090B0"
+                android:layout_marginEnd="6dp"/>
+
+            <EditText
+                android:id="@+id/etSpeedMultiplier"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:text="1"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:maxLength="6"
+                android:imeOptions="actionDone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" ×"
+                android:textSize="13sp"
+                android:textColor="#9090B0"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#0D0D1A"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <TextView
+            android:id="@+id/tvIndicatorCircular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="● 接近圓軌"
+            android:textSize="11sp"
+            android:textColor="#2244FF44"
+            android:gravity="center"
+            android:background="@drawable/indicator_bg"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginEnd="6dp"/>
+
+        <TextView
+            android:id="@+id/tvIndicatorEscape"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="● 逃逸速度"
+            android:textSize="11sp"
+            android:textColor="#22FF4444"
+            android:gravity="center"
+            android:background="@drawable/indicator_bg_red"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"/>
+
+    </LinearLayout>
+
+    <com.example.planetsimulate.SimulationView
+        android:id="@+id/simulationView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#000000"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#1A1A2E">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="專業模式"
+                android:textSize="12sp"
+                android:textColor="#9090B0"/>
+
+            <Switch
+                android:id="@+id/switchProMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumbTint="#7C6FFF"
+                android:trackTint="#3A3A5E"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnOrbitalData"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="查看軌道數據"
+            android:textSize="13sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#5C4FDF"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- 四項即時數據 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="距離"
+                    android:textSize="10sp"
+                    android:textColor="#9090B0"/>
+
+                <TextView
+                    android:id="@+id/tvInfoDistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-- km"
+                    android:textSize="13sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="速度"
+                    android:textSize="10sp"
+                    android:textColor="#9090B0"/>
+
+                <TextView
+                    android:id="@+id/tvInfoSpeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-- m/s"
+                    android:textSize="13sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="時間"
+                    android:textSize="10sp"
+                    android:textColor="#9090B0"/>
+
+                <TextView
+                    android:id="@+id/tvInfoTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 s"
+                    android:textSize="13sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="總能量"
+                    android:textSize="10sp"
+                    android:textColor="#9090B0"/>
+
+                <TextView
+                    android:id="@+id/tvInfoEnergy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-- MJ/kg"
+                    android:textSize="11sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

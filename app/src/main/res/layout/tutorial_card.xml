@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="vertical"
+    android:background="#F01A1A2E"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="28dp"
+    android:elevation="16dp">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="3dp"
+        android:background="#7C6FFF"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tutStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 / 6"
+        android:textSize="11sp"
+        android:textColor="#7C6FFF"
+        android:letterSpacing="0.1"
+        android:layout_marginBottom="6dp"/>
+
+    <TextView
+        android:id="@+id/tutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="標題"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/tutDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="說明文字"
+        android:textSize="14sp"
+        android:textColor="#CCCCEE"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_marginBottom="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/tutBtnSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="跳過"
+            android:textSize="12sp"
+            android:textColor="#666688"
+            android:backgroundTint="#00000000"
+            android:elevation="0dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/tutBtnNext"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="下一步"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#5C4FDF"/>
+
+    </LinearLayout>
+
+</LinearLayout>
