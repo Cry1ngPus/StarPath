@@ -287,7 +287,6 @@ public class MainActivity extends AppCompatActivity {
             setParamLocked(false, null);
         });
 
-        // 數據頁面
         btnOrbitalData.setOnClickListener(v -> {
             Intent intent = new Intent(this, OrbitalDataActivity.class);
             intent.putExtra("planetMass",   state.planet.mass);
@@ -303,17 +302,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnPreset.setOnClickListener(v -> {
-            String[] items = {
-                    "🌕  月球（27.3 天週期）",
-                    "🛸  國際空間站（92 分鐘週期）",
-                    "📡  地球同步衛星（24 小時週期）",
-                    "🔭  哈伯太空望遠鏡（95 分鐘週期）",
-                    "💫  橢圓軌道示範（離心率 0.7）",
-                    "🚀  接近逃逸速度示範",
-            };
+            String[][] presetData = getPresetsForCurrentPlanet();
+            String[] items = new String[presetData.length];
+            for (int i = 0; i < presetData.length; i++) items[i] = presetData[i][0];
             new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog)
-                    .setTitle("選擇情境")
-                    .setItems(items, (dialog, which) -> applyPreset(which))
+                    .setTitle("選擇情境（" + state.planet.name + "）")
+                    .setItems(items, (dialog, which) -> applyPresetData(presetData[which]))
                     .show();
         });
 
@@ -363,7 +357,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-
         simulationView.setOnClickListener(v -> applySpeedMultiplier());
     }
 
@@ -475,30 +468,73 @@ public class MainActivity extends AppCompatActivity {
         return String.format("%.1f 天", seconds / 86400);
     }
 
-    private void applyPreset(int index) {
+    private String[][] getPresetsForCurrentPlanet() {
+        switch (state.planet.name) {
+            case "水星": return new String[][]{
+                    {"橢圓軌道示範（離心率 0.79）", "29276", "606",  "45"},
+                    {"逃逸速度示範",             "15000", "2500", "0"},
+            };
+            case "金星": return new String[][]{
+                    {"橢圓軌道示範（離心率 0.79）", "72622", "1480", "45"},
+                    {"逃逸速度示範",             "20000", "5800", "0"},
+            };
+            case "地球": return new String[][]{
+                    {"月球（27.3 天週期）",         "384400", "1022", "0"},
+                    {"國際空間站 ISS（92 分鐘）",    "6779",   "7668", "0"},
+                    {"地球同步衛星 GEO（24 小時）",  "42164",  "3075", "0"},
+                    {"哈伯太空望遠鏡（95 分鐘）",    "6918",   "7590", "0"},
+                    {"橢圓軌道示範（離心率 0.79）",   "50000",  "2000", "45"},
+                    {"逃逸速度示範",               "100000", "3900", "0"},
+            };
+            case "火星": return new String[][]{
+                    {"火衛一 Phobos（7.6 小時）",  "9376",  "2133", "0"},
+                    {"火衛二 Deimos（30.3 小時）", "23458", "1348", "0"},
+                    {"橢圓軌道示範（離心率 0.79）",  "30000", "840",  "45"},
+                    {"逃逸速度示範",              "20000", "2100", "0"},
+            };
+            case "木星": return new String[][]{
+                    {"木衛一 Io（42.5 小時）",       "421800",  "17330", "0"},
+                    {"木衛二 Europa（85.2 小時）",    "671100",  "13739", "0"},
+                    {"木衛三 Ganymede（171.7 小時）", "1070400", "10879", "0"},
+                    {"橢圓軌道示範（離心率 0.79）",    "838932",  "8602",  "45"},
+                    {"逃逸速度示範",                "300000",  "29100", "0"},
+            };
+            case "土星": return new String[][]{
+                    {"土衛六 Titan（15.9 天）",     "1221870", "5572",  "0"},
+                    {"土衛二 Enceladus（32.9 小時）","238020",  "12623", "0"},
+                    {"橢圓軌道示範（離心率 0.79）",   "600000",  "5566",  "45"},
+                    {"逃逸速度示範",               "400000",  "13770", "0"},
+            };
+            case "天王星": return new String[][]{
+                    {"天衛五 Miranda（33.9 小時）", "129390", "6692", "0"},
+                    {"天衛一 Ariel（60.5 小時）",  "190900", "5509", "0"},
+                    {"橢圓軌道示範（離心率 0.79）",  "304344", "3054", "45"},
+                    {"逃逸速度示範",              "150000", "8793", "0"},
+            };
+            case "海王星": return new String[][]{
+                    {"海衛一 Triton（5.9 天，逆行）", "354759", "4389", "0"},
+                    {"橢圓軌道示範（離心率 0.79）",    "300000", "3341", "45"},
+                    {"逃逸速度示範",               "200000", "8270", "0"},
+            };
+            default: return new String[][]{
+                    {"橢圓軌道示範", "29276", "606",  "45"},
+                    {"逃逸速度示範", "50000", "2000", "0"},
+            };
+        }
+    }
+
+    private void applyPresetData(String[] preset) {
         gameLoop.stop();
         state.running = false;
         btnStart.setText("開始");
 
-        // 情境資料：{行星索引, 距地心距離(km), 初速(m/s), 角度(°)}
-        double[][] presets = {
-                {2, 384400,  1022, 0},   // 月球
-                {2,   6779,  7668, 0},   // 國際空間站（地球半徑 6371 + 408 km）
-                {2,  35786,  3075, 0},   // 地球同步衛星
-                {2,   6918,  7590, 0},   // 哈伯太空望遠鏡（6371 + 547 km）
-                {2,  50000,  2000, 45},  // 橢圓軌道示範
-                {2, 100000,  3900, 0},   // 接近逃逸速度
-        };
+        double distKm = Double.parseDouble(preset[1]);
+        double vel    = Double.parseDouble(preset[2]);
+        double angle  = Double.parseDouble(preset[3]);
 
-        if (index < 0 || index >= presets.length) return;
-        double[] p = presets[index];
-
-        int planetIdx = (int) p[0];
-        spinnerPlanet.setSelection(planetIdx);
-        state.planet        = PlanetData.ALL[planetIdx];
-        state.initialDistance = p[1] * 1000.0;
-        state.initialVelocity = p[2];
-        state.initialAngleDeg = p[3];
+        state.initialDistance = distKm * 1000.0;
+        state.initialVelocity = vel;
+        state.initialAngleDeg = angle;
 
         double factor = state.initialDistance / state.planet.radius;
         boolean inSliderRange = factor >= DIST_MIN_FACTOR && factor <= DIST_MAX_FACTOR;
@@ -506,28 +542,20 @@ public class MainActivity extends AppCompatActivity {
         if (inSliderRange) {
             double progress = (factor - DIST_MIN_FACTOR) / (DIST_MAX_FACTOR - DIST_MIN_FACTOR) * 100.0;
             seekDistance.setProgress((int) progress);
-
-            if (proMode) {
-                proMode = false;
-                switchProMode.setChecked(false);
-            }
+            if (proMode) { proMode = false; switchProMode.setChecked(false); }
         } else {
-
-            if (!proMode) {
-                proMode = true;
-                switchProMode.setChecked(true);
-            }
-            etDistance.setText(String.format("%.0f", state.initialDistance / 1000.0));
+            if (!proMode) { proMode = true; switchProMode.setChecked(true); }
+            etDistance.setText(String.format("%.0f", distKm));
         }
 
         double vCirc = PhysicsEngine.circularOrbitVelocity(state.planet, state.initialDistance);
         double vMax  = vCirc * VEL_MAX_FACTOR;
-        int velProgress = (int) Math.max(0, Math.min(100, state.initialVelocity / vMax * 100));
+        int velProgress = (int) Math.max(0, Math.min(100, vel / vMax * 100));
         seekVelocity.setProgress(velProgress);
-        if (proMode) etVelocity.setText(String.format("%.0f", state.initialVelocity));
+        if (proMode) etVelocity.setText(String.format("%.0f", vel));
 
-        seekAngle.setProgress((int) state.initialAngleDeg);
-        updateAngleLabel((int) state.initialAngleDeg);
+        seekAngle.setProgress((int) angle);
+        updateAngleLabel((int) angle);
         updateDistanceLabel();
         updateVelocityLabel(vCirc);
         if (proMode) updateProModeRangeHints();
@@ -535,11 +563,7 @@ public class MainActivity extends AppCompatActivity {
         state.reset();
         simulationView.setState(state);
         updateInfoPanel();
-
-        String[] presetNames = {
-                "月球", "國際空間站 (ISS)", "地球同步衛星", "哈伯太空望遠鏡", "橢圓軌道示範", "逃逸速度示範"
-        };
-        setParamLocked(true, presetNames[index]);
+        setParamLocked(true, preset[0]);
     }
 
     private void setParamLocked(boolean locked, String presetName) {
